@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "b62d5c0a-6cb7-4514-a68e-b06001e0cf1c",
+		"name": "GreenThumb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4296969"
+	},
+	"item": [
+		{
+			"name": "Plant",
+			"item": [
+				{
+					"name": "Plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/plants"
+					},
+					"response": []
+				},
+				{
+					"name": "Plant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/plants/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Plant update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Aloe Vera Updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/plants/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Plant create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ficus\",\r\n  \"species\": \"Ficus elastica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/plants"
+					},
+					"response": []
+				},
+				{
+					"name": "Plant delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/plants/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GrowthLog",
+			"item": [
+				{
+					"name": "GrowthLogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/growthlogs"
+					},
+					"response": []
+				},
+				{
+					"name": "GrowthLog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/growthlogs/1"
+					},
+					"response": []
+				},
+				{
+					"name": "GrowthLogs byPlantId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/growthlogs/plant/1"
+					},
+					"response": []
+				},
+				{
+					"name": "GrowthLog update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"note\": \"Updated note\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/growthlogs/1"
+					},
+					"response": []
+				},
+				{
+					"name": "GrowthLog create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"plantID\": 1,\r\n  \"date\": \"2024-06-01\",\r\n  \"height\": 20,\r\n  \"note\": \"New leaves\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/growthlogs"
+					},
+					"response": []
+				},
+				{
+					"name": "GrowthLog delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/growthlogs/1"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
