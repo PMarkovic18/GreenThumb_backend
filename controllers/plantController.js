@@ -52,9 +52,14 @@ exports.updatePlant = (req, res) => {
 
 // Delete a plant
 exports.deletePlant = (req, res) => {
-    req.db.run('DELETE FROM plants WHERE id = ?', [req.params.id], function (err) {
+    // First delete all growth logs for this plant
+    req.db.run('DELETE FROM growth_logs WHERE plantID = ?', [req.params.id], function (err) {
         if (err) return res.status(500).json({ error: err.message });
-        if (this.changes === 0) return res.status(404).json({ error: 'Plant not found' });
-        res.json({ message: 'Plant deleted' });
+        // Now delete the plant itself
+        req.db.run('DELETE FROM plants WHERE id = ?', [req.params.id], function (err2) {
+            if (err2) return res.status(500).json({ error: err2.message });
+            if (this.changes === 0) return res.status(404).json({ error: 'Plant not found' });
+            res.json({ message: 'Plant and associated growth logs deleted' });
+        });
     });
 };
