@@ -14,7 +14,7 @@ Ovaj projekt je backend aplikacija za GreenThumb, sustav za praćenje i upravlja
    ```
 2. Pokrenite server:
    ```
-   npx nodemon app.js
+   npx nodemon index.js
    ```
 
 Server će biti dostupan na `http://localhost:3000` (ili port koji ste postavili).
