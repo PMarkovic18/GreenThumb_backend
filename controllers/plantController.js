@@ -1,4 +1,5 @@
 const Plant = require('../models/plant');
+const GrowthLog = require('../models/growthLog');
 
 // Create a new plant
 exports.createPlant = (req, res) => {
@@ -24,12 +25,17 @@ exports.getPlants = (req, res) => {
     });
 };
 
-// Get a single plant by ID
+// Get a single plant by ID (with all growth logs)
 exports.getPlantById = (req, res) => {
     req.db.get('SELECT * FROM plants WHERE id = ?', [req.params.id], (err, row) => {
         if (err) return res.status(500).json({ error: err.message });
         if (!row) return res.status(404).json({ error: 'Plant not found' });
-        res.json(new Plant(row.id, row.name, row.species));
+        const plant = new Plant(row.id, row.name, row.species);
+        req.db.all('SELECT * FROM growth_logs WHERE plantID = ?', [req.params.id], (err2, logs) => {
+            if (err2) return res.status(500).json({ error: err2.message });
+            const growthLogs = logs.map(log => new GrowthLog(log.id, log.plantID, log.date, log.height, log.note));
+            res.json({ plant, growthLogs });
+        });
     });
 };
 

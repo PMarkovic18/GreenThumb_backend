@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
@@ -6,7 +7,11 @@ const plantRoutes = require('./routes/plantRoutes');
 const growthLogRoutes = require('./routes/growthLogRoutes');
 const initDb = require('./db/initDb');
 
+
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Ensure db directory exists
 const dbDir = path.join(__dirname, 'db');
@@ -34,6 +39,7 @@ app.use((req, res, next) => {
 
 // Middleware
 app.use(express.json());
+
 
 // Routes
 app.use('/api/plants', plantRoutes);
