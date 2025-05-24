@@ -45,8 +45,4 @@ app.use(express.json());
 app.use('/api/plants', plantRoutes);
 app.use('/api/growthlogs', growthLogRoutes);
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;

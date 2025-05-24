@@ -19,6 +19,22 @@ Ovaj projekt je backend aplikacija za GreenThumb, sustav za praćenje i upravlja
 
 Server će biti dostupan na `http://localhost:3000` (ili port koji ste postavili).
 
+## Pokretanje testova
+
+Za pokretanje svih testova koristite:
+
+```
+npm test
+```
+
+ili
+
+```
+npx jest
+```
+
+Testovi se nalaze u direktoriju `test` i automatski će biti pokrenuti pomoću Jest-a.
+
 ## Korištenje Postman kolekcije
 
 Za testiranje API-ja možete koristiti priloženu Postman kolekciju:
