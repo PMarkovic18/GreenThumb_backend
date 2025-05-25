@@ -1,5 +1,3 @@
-// GrowthLog model class definition
-
 class GrowthLog {
     constructor(id, plantID, date, height, note) {
         this.id = id;

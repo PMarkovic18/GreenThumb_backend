@@ -6,7 +6,6 @@ describe('GrowthLog API', () => {
     let logId;
 
     beforeAll(async () => {
-        // Create a plant to attach growth logs to
         const res = await request(app)
             .post('/api/plants')
             .send({ name: 'Plant for GrowthLog', species: 'Species' });
@@ -14,7 +13,6 @@ describe('GrowthLog API', () => {
     });
 
     afterAll(async () => {
-        // Clean up the plant
         await request(app).delete(`/api/plants/${plantId}`);
     });
 

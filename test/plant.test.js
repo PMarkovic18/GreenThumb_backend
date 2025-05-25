@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../app'); // Make sure app.js exports the Express app
+const app = require('../app'); 
 
 describe('Plant API', () => {
     let createdId;
@@ -40,7 +40,6 @@ describe('Plant API', () => {
         expect(res.body).toHaveProperty('message');
     });
 
-    // Clean up in case the delete test fails or is skipped
     afterAll(async () => {
         if (createdId) {
             await request(app).delete(`/api/plants/${createdId}`);

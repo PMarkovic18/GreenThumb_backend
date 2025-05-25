@@ -1,11 +1,9 @@
 const GrowthLog = require('../models/growthLog');
 
-// Helper for date validation: "DD.MM.YYYY."
 function isValidDateFormat(date) {
     return /^\d{2}\.\d{2}\.\d{4}\.$/.test(date);
 }
 
-// Create a new growth log
 exports.createGrowthLog = (req, res) => {
     const { plantID, date, height, note } = req.body;
     if (!isValidDateFormat(date)) {
@@ -24,7 +22,6 @@ exports.createGrowthLog = (req, res) => {
     );
 };
 
-// Get all growth logs
 exports.getGrowthLogs = (req, res) => {
     req.db.all('SELECT * FROM growth_logs', [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -32,7 +29,6 @@ exports.getGrowthLogs = (req, res) => {
     });
 };
 
-// Get a single growth log by ID
 exports.getGrowthLogById = (req, res) => {
     req.db.get('SELECT * FROM growth_logs WHERE id = ?', [req.params.id], (err, row) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -41,7 +37,6 @@ exports.getGrowthLogById = (req, res) => {
     });
 };
 
-// Update a growth log
 exports.updateGrowthLog = (req, res) => {
     const { plantID, date, height, note } = req.body;
     if (!isValidDateFormat(date)) {
@@ -61,7 +56,6 @@ exports.updateGrowthLog = (req, res) => {
     );
 };
 
-// Delete a growth log
 exports.deleteGrowthLog = (req, res) => {
     req.db.run('DELETE FROM growth_logs WHERE id = ?', [req.params.id], function (err) {
         if (err) return res.status(500).json({ error: err.message });
@@ -70,7 +64,6 @@ exports.deleteGrowthLog = (req, res) => {
     });
 };
 
-// Get all growth logs for a specific plant
 exports.getGrowthLogsByPlantId = (req, res) => {
     req.db.all('SELECT * FROM growth_logs WHERE plantID = ?', [req.params.plantID], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });

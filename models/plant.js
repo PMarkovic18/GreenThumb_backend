@@ -1,5 +1,3 @@
-// Plant model class
-
 class Plant {
     constructor(id, name, species) {
         this.id = id;

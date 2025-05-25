@@ -14,7 +14,6 @@ module.exports = function initDb(db) {
             FOREIGN KEY (plantID) REFERENCES plants(id)
         )`);
 
-        // Check if plants table is empty
         db.get('SELECT COUNT(*) as count FROM plants', (err, row) => {
             if (!err && row.count === 0) {
                 db.run('INSERT INTO plants (name, species) VALUES (?, ?)', ['Aloe Vera', 'Aloe']);
@@ -26,7 +25,6 @@ module.exports = function initDb(db) {
             }
         });
 
-        // Check if growth_logs table is empty
         db.get('SELECT COUNT(*) as count FROM growth_logs', (err, row) => {
             if (!err && row.count === 0) {
                 db.run('INSERT INTO growth_logs (plantID, date, height, note) VALUES (?, ?, ?, ?)', [1, '01.05.2024.', 15, 'Healthy growth']);
